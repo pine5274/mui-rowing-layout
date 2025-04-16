@@ -117,13 +117,17 @@ html {
 }
 
 .image-slider {
+    position: fixed;
+    bottom: 160px;
+    left: 50%; /* 水平方向の中央に配置 */
     width: 150px;
     height: 150px;
     background-size: cover;
     background-position: center;
-    margin: 0 auto;
+    transform: translate(-50%, 0); /* 水平方向の中央揃え */
+    opacity: 0; /* 初期状態は透明 */
+    transition: opacity 0.8s ease-in-out; /* 透明度の切り替えを滑らかに */
 }
-
-/* #__bs_notify__ {
-    display: none !important;
-} */
+.image-slider.visible {
+    opacity: 1; /* 表示状態 */
+}

@@ -73,7 +73,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSponsorIndex((prevIndex) => (prevIndex + 1) % sponsorImages.length);
-    }, 5000); // 3秒ごとに切り替え
+    }, 10000);
 
     return () => clearInterval(interval); // クリーンアップ
   }, [sponsorImages.length]);

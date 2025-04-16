@@ -97,22 +97,29 @@ window.setInterval(remoteScore, 5000);
 </script>
 <script>
   const images = [
-    "image/logo/1.jpg",
-    "image/logo/2.jpg",
-    "image/logo/3.jpg"
+    "image/logo/1.png",
+    "image/logo/2.png",
+    "image/logo/3.png"
   ];
 
   let currentIndex = 0;
+  const slider = document.getElementById('image-slider');
 
   function changeImage() {
-    const slider = document.getElementById("image-slider");
-    slider.style.backgroundImage = `url(${images[currentIndex]})`;
-    currentIndex = (currentIndex + 1) % images.length; // 次の画像に切り替え
+    // 一旦透明にする
+    slider.classList.remove('visible');
+
+    // 0.5秒後に次の画像を設定し、再び表示
+    setTimeout(() => {
+      slider.style.backgroundImage = `url(${images[currentIndex]})`;
+      currentIndex = (currentIndex + 1) % images.length; // 次の画像に切り替え
+      slider.classList.add('visible');
+    }, 1000);
   }
 
   // 初期画像を設定し、3秒ごとに切り替え
   changeImage();
-  setInterval(changeImage, 3000);
+  setInterval(changeImage, 10000);
 </script>
 
 </html>
