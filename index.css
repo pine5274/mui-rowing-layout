@@ -53,10 +53,9 @@ body {
   position: fixed; /* fixedに変更 */
   top: 10px;
   right: 10px;
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   background-color: rgba(0, 0, 0, 0);
-  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
