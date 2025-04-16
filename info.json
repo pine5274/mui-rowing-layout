@@ -1,0 +1,40 @@
+[
+  {
+    "name": "西日本選手権",
+    "lane": [
+      "1 関西みらい銀行aaa",
+      "2 デンソーオルカリス",
+      "3 明治安田D",
+      "4 中部電力ボート部Aaaaaaa",
+      "5 デンソーオルカリス",
+      "6 メンテックローイングクラブ"
+    ],
+    "info": "W2X Final A",
+    "time-line": [
+      {
+        "time": "8:00",
+        "name": "高校W1X Heat"
+      },
+      {
+        "time": "9:00",
+        "name": "中学M1X Heat"
+      },
+      {
+        "time": "10:00",
+        "name": "高校W2X Semifinal"
+      },
+      {
+        "time": "11:00",
+        "name": "M2X Heat"
+      },
+      {
+        "time": "12:00",
+        "name": "W4X+ Heat"
+      },
+      {
+        "time": "13:00",
+        "name": "W4X+ Heat"
+      }
+    ]
+  }
+]

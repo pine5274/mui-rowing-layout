@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang='ja'>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BraceBracket</title>
+  <link rel="stylesheet" href="draw.css" />
+  <link href="https://api.fontshare.com/css?f[]=satoshi@1,2&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <img class='board' src="image/draw.png" alt=""> <!-- スコアボードのデザインの画像 -->
+  <p class="next-race">Next Race</p>
+  <p id="race-info" class="race-info"></p>
+  <p id="lane-one" class="lane lane-one"></p>
+  <p id="lane-two" class="lane lane-two"></p>
+  <p id="lane-three" class="lane lane-three"></p>
+  <p id="lane-four" class="lane lane-four"></p>
+  <p id="lane-five" class="lane lane-five"></p>
+  <p id="lane-six" class="lane lane-six"></p>
+  <p id="lane-one" class="lane lane-one"></p>
+  <p id="t-one" class="time-line t-one"></p>
+  <p id="t-two" class="time-line t-two"></p>
+  <p id="t-three" class="time-line t-three"></p>
+  <p id="t-four" class="time-line t-four"></p>
+  <p id="t-five" class="time-line t-five"></p>
+  <p id="t-six" class="time-line t-six"></p>
+  <p id="t-name-one" class="time-line-name t-one"></p>
+  <p id="t-name-two" class="time-line-name t-two"></p>
+  <p id="t-name-three" class="time-line-name t-three"></p>
+  <p id="t-name-four" class="time-line-name t-four"></p>
+  <p id="t-name-five" class="time-line-name t-five"></p>
+  <p id="t-name-six" class="time-line-name t-six"></p>
+  <p class="local-setting">Local Time<br>JST</p>
+  <p id="local-time" class="local-time"></p>
+  <div id="image-slider" class="image-slider"></div>
+</body>
+<script>
+//ローカルのjsonもしくはGASのAPIのURL（Google Spreadsheetを使う場合は各自変更してください。）
+const endpoint = "info.json";
+
+//APIを使って非同期データを取得する
+function remoteScore() {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", endpoint);
+  xhr.send();
+  xhr.onreadystatechange = function() {
+    //JSONから配列に変換
+    const data = JSON.parse(xhr.response);
+    console.log(data);
+    document.getElementById("t-one").innerHTML = data[0]['time-line'][0]['time'];
+    document.getElementById("t-two").innerHTML = data[0]['time-line'][1]['time'];
+    document.getElementById("t-three").innerHTML = data[0]['time-line'][2]['time'];
+    document.getElementById("t-four").innerHTML = data[0]['time-line'][3]['time'];
+    document.getElementById("t-five").innerHTML = data[0]['time-line'][4]['time'];
+    document.getElementById("t-six").innerHTML = data[0]['time-line'][5]['time'];
+    document.getElementById("t-name-one").innerHTML = data[0]['time-line'][0]['name'];
+    document.getElementById("t-name-two").innerHTML = data[0]['time-line'][1]['name'];
+    document.getElementById("t-name-three").innerHTML = data[0]['time-line'][2]['name'];
+    document.getElementById("t-name-four").innerHTML = data[0]['time-line'][3]['name'];
+    document.getElementById("t-name-five").innerHTML = data[0]['time-line'][4]['name'];
+    document.getElementById("t-name-six").innerHTML = data[0]['time-line'][5]['name'];
+    document.getElementById("race-info").innerHTML = data[0]['info'];
+    document.getElementById("lane-one").innerHTML = data[0]['lane'][0];
+    document.getElementById("lane-two").innerHTML = data[0]['lane'][1];
+    document.getElementById("lane-three").innerHTML = data[0]['lane'][2];
+    document.getElementById("lane-four").innerHTML = data[0]['lane'][3];
+    document.getElementById("lane-five").innerHTML = data[0]['lane'][4];
+    document.getElementById("lane-six").innerHTML = data[0]['lane'][5];
+  }
+}
+remoteScore();
+window.setInterval(remoteScore, 5000);
+</script>
+<script>
+  function timeSet() {
+      const localTime = new Date();
+      let hour = localTime.getHours();
+      let min = localTime.getMinutes();
+      if (hour < 10) { 
+        hour = `0${hour}`;
+      }
+
+      if (min < 10) {
+        min = `0${min}`;
+      }
+
+      const time = `${hour}:${min}`;
+      document.getElementById("local-time").innerHTML = time;
+  }
+  timeSet();
+  window.setInterval(timeSet, 3000);
+</script>
+<script>
+  const images = [
+    "image/logo/1.jpg",
+    "image/logo/2.jpg",
+    "image/logo/3.jpg"
+  ];
+
+  let currentIndex = 0;
+
+  function changeImage() {
+    const slider = document.getElementById("image-slider");
+    slider.style.backgroundImage = `url(${images[currentIndex]})`;
+    currentIndex = (currentIndex + 1) % images.length; // 次の画像に切り替え
+  }
+
+  // 初期画像を設定し、3秒ごとに切り替え
+  changeImage();
+  setInterval(changeImage, 3000);
+</script>
+
+</html>

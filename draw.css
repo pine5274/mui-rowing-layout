@@ -1,0 +1,129 @@
+html {
+    font-family: "Satoshi", "Noto Sans JP", sans-serif;
+    font-variation-settings: "wght" 900;
+    font-weight: 900;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.board {
+    position: fixed;
+    width: 90%;
+    top: 54px;
+    left: 96px;
+    z-index: -1;
+    opacity: 1;
+}
+
+.disable {
+    display: none;
+}
+
+.next-race {
+    position: fixed;
+    top: 80px;
+    left: 200px;
+    color: #cbb4fd;
+    font-size: 50px;
+}
+
+.race-info {
+    position: fixed;
+    top: 100px;
+    left: 200px;
+    font-size: 100px;
+}
+
+.time-line {
+    width: 300px;
+    height: 60px;
+    margin: 0;
+    position: fixed;
+    font-size: 30px;
+    left: 1340px;
+}
+.time-line-name {
+    width: 300px;
+    height: 60px;
+    margin: 0;
+    position: fixed;
+    font-size: 30px;
+    left: 1510px;
+}
+.t-one {
+    top: calc(0 * (100% - 170px) / 6 + 150px);
+}
+.t-two {
+    top: calc(1 * (100% - 170px) / 6 + 150px);
+}
+.t-three {
+    top: calc(2 * (100% - 170px) / 6 + 150px);
+}
+.t-four {
+    top: calc(3 * (100% - 170px) / 6 + 150px);
+}
+.t-five {
+    top: calc(4 * (100% - 170px) / 6 + 150px);
+}
+.t-six {
+    top: calc(5 * (100% - 170px) / 6 + 150px);
+}
+
+.lane {
+    margin: 0;
+    position: fixed;
+    left: 200px;
+    font-size: 40px;
+}
+.lane-one {
+    top: calc(0 * (100% - 550px) / 6 + 390px);
+}
+.lane-two {
+    top: calc(1 * (100% - 550px) / 6 + 390px);
+}
+.lane-three {
+    top: calc(2 * (100% - 550px) / 6 + 390px);
+}
+.lane-four {
+    top: calc(3 * (100% - 550px) / 6 + 390px);
+}
+.lane-five {
+    top: calc(4 * (100% - 550px) / 6 + 390px);
+}
+.lane-six {
+    top: calc(5 * (100% - 550px) / 6 + 390px);
+}
+
+.local-setting {
+    font-variation-settings: "wght" 500;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 26px;
+    position: fixed;
+    color: #ffffff;
+    left: 817px;
+    top: 928px;
+    letter-spacing: 1px;
+}
+  
+.local-time {
+    font-size: 52px;
+    text-align: right;
+    color: #ffffff;
+    position: fixed;
+    left: 970px;
+    top: 890px;
+    font-variant-numeric: tabular-nums;
+}
+
+.image-slider {
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+}
+
+/* #__bs_notify__ {
+    display: none !important;
+} */
