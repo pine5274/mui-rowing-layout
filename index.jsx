@@ -38,8 +38,21 @@ const getIconForNumber = (number) => {
 };
 
 function App() {
-  const raceInfo = info[0]['time-line'][0].name;
-  const lane = info[0].lane;
+  const endPoint = "https://script.google.com/macros/s/AKfycbw3sXeqPDRPIjpkMmkBlAviya1C82UIprzQRMX31am4-vVVbrOQvAj9_x9tIj6m9jiuLg/exec";
+
+  // データ取得用state
+  const [remoteInfo, setRemoteInfo] = useState(null);
+
+  // lane配列を生成
+  const lane = remoteInfo
+    ? remoteInfo.map(item => `${item['lane-number']} ${item.team}`)
+    : [];
+
+  // レース情報
+  const raceInfo = remoteInfo?.[0]?.['boat'] + " " + remoteInfo?.[0]?.['class'];
+
+  // スポンサー画像表示のON/OFFパラメータ
+  const [showSponsor, setShowSponsor] = useState(false);
 
   // 時刻を管理するstate
   const [time, setTime] = useState('');
@@ -53,6 +66,23 @@ function App() {
     './image/logo/2.png',
     './image/logo/3.png',
   ];
+
+  // 5秒ごとにendpointからデータ取得
+  useEffect(() => {
+    const fetchRemoteInfo = async () => {
+      try {
+        const res = await fetch(endPoint);
+        if (!res.ok) throw new Error('Network response was not ok');
+        const data = await res.json();
+        setRemoteInfo(data);
+      } catch (e) {
+        // 通信エラー時は何もしない（前回データを維持）
+      }
+    };
+    fetchRemoteInfo();
+    const interval = setInterval(fetchRemoteInfo, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   // 時刻を更新するuseEffect
   useEffect(() => {
@@ -74,9 +104,8 @@ function App() {
     const interval = setInterval(() => {
       setCurrentSponsorIndex((prevIndex) => (prevIndex + 1) % sponsorImages.length);
     }, 10000);
-
-    return () => clearInterval(interval); // クリーンアップ
-  }, [sponsorImages.length]);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>
@@ -85,11 +114,12 @@ function App() {
         {lane.map((team, index) => {
           const firstChar = team.charAt(0);
           const icon = getIconForNumber(firstChar);
-          const teamNameWithoutNumber = team.slice(2);
+          // 先頭の数字とスペースを除去
+          const teamNameWithoutNumber = team.replace(/^\d+\s*/, '');
 
           return (
             <Chip
-              key={index}
+              key={team}
               label={teamNameWithoutNumber}
               icon={icon}
               sx={{
@@ -111,16 +141,22 @@ function App() {
       </div>
       <div className='local-time'>{time}</div>
       {/* スポンサー画像を右上に表示 */}
-      <div className='sponsor'>
-        {sponsorImages.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt='スポンサー'
-            className={`sponsor-image ${index === currentSponsorIndex ? 'active' : ''}`}
-          />
-        ))}
-      </div>
+      {showSponsor && (
+        <div className='sponsor'>
+          {sponsorImages.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt='スポンサー'
+              className={`sponsor-image ${index === currentSponsorIndex ? 'active' : ''}`}
+            />
+          ))}
+        </div>
+      )}
+      {/* スポンサー表示切り替え用のボタン例（必要ならUIとして追加） */}
+      {/* <button onClick={() => setShowSponsor((prev) => !prev)}>
+        スポンサー画像表示: {showSponsor ? 'ON' : 'OFF'}
+      </button> */}
     </div>
   );
 }
