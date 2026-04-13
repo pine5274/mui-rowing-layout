@@ -10,10 +10,21 @@ import Looks4Icon from '@mui/icons-material/Looks4';
 import Looks5Icon from '@mui/icons-material/Looks5';
 import Looks6Icon from '@mui/icons-material/Looks6';
 
-// ライトテーマを作成
+const endPoint = "https://script.google.com/macros/s/AKfycbw3sXeqPDRPIjpkMmkBlAviya1C82UIprzQRMX31am4-vVVbrOQvAj9_x9tIj6m9jiuLg/exec";
+
+// スポンサー画像表示のON/OFFパラメータ
+const showSponsor = true;
+
+// スポンサー画像のリスト
+const sponsorImages = [
+  './image/logo/1.png',
+  './image/logo/2.png',
+  './image/logo/3.png',
+];
+
 const theme = createTheme({
   palette: {
-    mode: 'light', // ライトテーマを指定
+    mode: 'light',
   },
 });
 
@@ -38,34 +49,16 @@ const getIconForNumber = (number) => {
 };
 
 function App() {
-  const endPoint = "https://script.google.com/macros/s/AKfycbw3sXeqPDRPIjpkMmkBlAviya1C82UIprzQRMX31am4-vVVbrOQvAj9_x9tIj6m9jiuLg/exec";
 
-  // データ取得用state
   const [remoteInfo, setRemoteInfo] = useState(null);
 
-  // lane配列を生成
   const lane = remoteInfo
     ? remoteInfo.map(item => `${item['lane-number']} ${item.team}`)
     : [];
 
-  // レース情報
   const raceInfo = remoteInfo?.[0]?.['boat'] + " " + remoteInfo?.[0]?.['class'];
-
-  // スポンサー画像表示のON/OFFパラメータ
-  const [showSponsor, setShowSponsor] = useState(false);
-
-  // 時刻を管理するstate
   const [time, setTime] = useState('');
-
-  // スポンサー画像を管理するstate
   const [currentSponsorIndex, setCurrentSponsorIndex] = useState(0);
-
-  // スポンサー画像のリスト
-  const sponsorImages = [
-    './image/logo/1.png',
-    './image/logo/2.png',
-    './image/logo/3.png',
-  ];
 
   // 5秒ごとにendpointからデータ取得
   useEffect(() => {
@@ -76,7 +69,6 @@ function App() {
         const data = await res.json();
         setRemoteInfo(data);
       } catch (e) {
-        // 通信エラー時は何もしない（前回データを維持）
       }
     };
     fetchRemoteInfo();
@@ -84,7 +76,6 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // 時刻を更新するuseEffect
   useEffect(() => {
     const updateClock = () => {
       const now = new Date();
@@ -93,13 +84,12 @@ function App() {
       setTime(`${hours}:${minutes}`);
     };
 
-    updateClock(); // 初回実行
+    updateClock();
     const interval = setInterval(updateClock, 3000); // 3秒ごとに更新
 
     return () => clearInterval(interval); // クリーンアップ
   }, []);
 
-  // スポンサー画像を切り替えるuseEffect
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSponsorIndex((prevIndex) => (prevIndex + 1) % sponsorImages.length);
@@ -153,10 +143,6 @@ function App() {
           ))}
         </div>
       )}
-      {/* スポンサー表示切り替え用のボタン例（必要ならUIとして追加） */}
-      {/* <button onClick={() => setShowSponsor((prev) => !prev)}>
-        スポンサー画像表示: {showSponsor ? 'ON' : 'OFF'}
-      </button> */}
     </div>
   );
 }

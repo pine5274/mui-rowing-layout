@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <img class='board' src="image/draw.png" alt=""> <!-- スコアボードのデザインの画像 -->
+  <img class='board' src="image/draw.png" alt="">
   <p class="next-race">Next Race</p>
   <p id="race-info" class="race-info"></p>
   <p id="lane-one" class="lane lane-one"></p>
@@ -144,30 +144,27 @@ window.setInterval(remoteScoreFromPoint, 5000);
   window.setInterval(timeSet, 3000);
 </script>
 <script>
-  // const images = [
-  //   "image/logo/1.png",
-  //   "image/logo/2.png",
-  //   "image/logo/3.png"
-  // ];
+  const images = [
+    "image/logo/1.png",
+    "image/logo/2.png",
+    "image/logo/3.png"
+  ];
 
-  // let currentIndex = 0;
-  // const slider = document.getElementById('image-slider');
+  let currentIndex = 0;
+  const slider = document.getElementById('image-slider');
 
-  // function changeImage() {
-  //   // 一旦透明にする
-  //   slider.classList.remove('visible');
+function changeImage() {
+    slider.classList.remove('visible');
 
-  //   // 0.5秒後に次の画像を設定し、再び表示
-  //   setTimeout(() => {
-  //     slider.style.backgroundImage = `url(${images[currentIndex]})`;
-  //     currentIndex = (currentIndex + 1) % images.length; // 次の画像に切り替え
-  //     slider.classList.add('visible');
-  //   }, 1000);
-  // }
+    setTimeout(() => {
+      slider.style.backgroundImage = `url(${images[currentIndex]})`;
+      currentIndex = (currentIndex + 1) % images.length;
+      slider.classList.add('visible');
+    }, 1000);
+  }
 
-  // // 初期画像を設定し、3秒ごとに切り替え
-  // changeImage();
-  // setInterval(changeImage, 10000);
+  changeImage();
+  setInterval(changeImage, 6000);
 </script>
 
 </html>
