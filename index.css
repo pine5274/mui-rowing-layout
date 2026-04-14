@@ -68,9 +68,9 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   opacity: 0; /* 初期状態は透明 */
-  transition: opacity 1s ease-in-out; /* フェードイン・フェードアウトのアニメーション */
+  transition: opacity 0.8s ease-in-out; /* フェードイン・フェードアウトのアニメーション */
 }
 
 .sponsor-image.active {

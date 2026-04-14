@@ -17,9 +17,9 @@ const showSponsor = true;
 
 // スポンサー画像のリスト
 const sponsorImages = [
-  './image/logo/1.png',
-  './image/logo/2.png',
-  './image/logo/3.png',
+  './image/logo/n-1.jpg',
+  './image/logo/n-2.jpg',
+  './image/logo/n-3.jpg',
 ];
 
 const theme = createTheme({

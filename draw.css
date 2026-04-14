@@ -119,14 +119,15 @@ html {
 .image-slider {
     position: fixed;
     bottom: 160px;
-    left: 50%; /* 水平方向の中央に配置 */
-    width: 150px;
-    height: 150px;
-    background-size: cover;
+    left: 50%;
+    width: 200px;      /* 幅を固定 */
+    height: 150px;     /* 高さを固定 */
+    background-size: contain; /* 縦横比を維持して全体表示 */
+    background-repeat: no-repeat;
     background-position: center;
-    transform: translate(-50%, 0); /* 水平方向の中央揃え */
-    opacity: 0; /* 初期状態は透明 */
-    transition: opacity 0.8s ease-in-out; /* 透明度の切り替えを滑らかに */
+    transform: translate(-50%, 0);
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
 }
 .image-slider.visible {
     opacity: 1; /* 表示状態 */
