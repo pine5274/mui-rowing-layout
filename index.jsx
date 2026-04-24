@@ -20,6 +20,7 @@ const sponsorImages = [
   './image/logo/n-1.jpg',
   './image/logo/n-2.jpg',
   './image/logo/n-3.jpg',
+  './image/logo/n-4.jpg',
 ];
 
 const theme = createTheme({
