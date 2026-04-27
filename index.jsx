@@ -13,7 +13,7 @@ import Looks6Icon from '@mui/icons-material/Looks6';
 const endPoint = "https://script.google.com/macros/s/AKfycbw3sXeqPDRPIjpkMmkBlAviya1C82UIprzQRMX31am4-vVVbrOQvAj9_x9tIj6m9jiuLg/exec";
 
 // スポンサー画像表示のON/OFFパラメータ
-const showSponsor = true;
+const showSponsor = false;
 
 // スポンサー画像のリスト
 const sponsorImages = [
