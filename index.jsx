@@ -117,12 +117,12 @@ function App() {
                 m: 1,
                 color: '#fff',
                 backgroundColor: 'rgba(10, 10, 10, 0.8)',
-                fontSize: '1.1rem',
-                height: '40px',
-                borderRadius: '20px',
+                fontSize: '1.7rem',
+                height: '48px',
+                borderRadius: '8px',
                 padding: '0 8px',
                 '& .MuiChip-icon': {
-                  fontSize: '1.8rem',
+                  fontSize: '2.2rem',
                   color: 'rgba(255, 255, 255, 1)',
                 },
               }}

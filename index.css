@@ -19,11 +19,11 @@ body {
 
 .race-info {
   position: fixed; /* fixedに変更 */
-  font-size: 30px;
+  font-size: 36px;
   text-align: center;
   color: #ffffff;
-  left: 15px;
-  top: 15px;
+  left: 12px;
+  top: 8px;
   background-color: rgba(0, 0, 0, 0.7); /* 若干透過した黒色 */
   padding: 8px 18px;
   border-radius: 8px;
@@ -31,9 +31,9 @@ body {
 
 .lane {
   position: fixed; /* fixedに変更 */
-  left: 20px;
+  left: 4px;
   bottom: 0px;
-  width: calc(100% - 200px);
+  width: calc(100% - 100px);
 }
 
 .local-time {
@@ -41,7 +41,7 @@ body {
   font-size: 32px;
   text-align: center;
   color: #ffffff;
-  right: 14px;
+  right: 6px;
   bottom: 8px;
   font-variant-numeric: tabular-nums;
   background-color: rgba(0, 0, 0, 0.7); /* 若干透過した黒色 */
